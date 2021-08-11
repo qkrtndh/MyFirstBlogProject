@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class BoardController {
 
     @GetMapping("/")
-    public void index(){
-
+    public String index(){
+        return "server index page";
     }
 
     @GetMapping("/bookList")
