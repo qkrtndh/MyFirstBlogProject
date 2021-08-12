@@ -23,7 +23,7 @@ public class User {
     @Column(nullable = false,length = 100)//hash 암호화시를 위해 넉넉하게 설정
     private String password;
     @Column(nullable = false,length = 50)
-    private String email;
+    private String username;
 
     //private String oauth;//kakao,google
 
@@ -31,7 +31,7 @@ public class User {
     private String nickname;
 
     @Enumerated(EnumType.STRING)//DB에는 RoleType이라는 Enum이 없으므로 적용해줌
-    private RoleType role;	//USER,ADMIN,MANAGE으로 강제
+    private Role role;	//USER,ADMIN,MANAGE으로 강제
 
     @CreationTimestamp//시간이 자동 입력
     private Timestamp createDate;

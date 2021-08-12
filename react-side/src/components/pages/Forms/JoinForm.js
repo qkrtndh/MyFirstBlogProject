@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 const JoinForm = (props) => {
   const [user, setUser] = useState({
-    email: '',
+    username: '',
     password: '',
     nickname: '',
   });
@@ -13,6 +13,7 @@ const JoinForm = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
+        //Authorization: 'Soostory',
       }, //전송할 데이터를 json으로 변경하여 던짐
       body: JSON.stringify(user),
     })
@@ -26,7 +27,7 @@ const JoinForm = (props) => {
       .then((res) => {
         if (res !== null) {
           alert('가입되었습니다!');
-          props.history.push('/');
+          props.history.push('/LoginForm');
         } else {
           alert('등록실패');
         }
@@ -47,7 +48,7 @@ const JoinForm = (props) => {
           type="email"
           placeholder="Enter email"
           onChange={changeValue}
-          name="email"
+          name="username"
         />
       </Form.Group>
 

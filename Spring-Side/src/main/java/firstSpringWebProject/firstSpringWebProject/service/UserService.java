@@ -1,6 +1,6 @@
 package firstSpringWebProject.firstSpringWebProject.service;
 
-import firstSpringWebProject.firstSpringWebProject.domain.RoleType;
+import firstSpringWebProject.firstSpringWebProject.domain.Role;
 import firstSpringWebProject.firstSpringWebProject.domain.User;
 import firstSpringWebProject.firstSpringWebProject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ public class UserService {
         String raw = user.getPassword();
         String enc = encoder.encode(raw);
         user.setPassword(enc);
-        user.setRole(RoleType.USER);
+        user.setRole(Role.ROLE_USER);
         return userRepository.save(user);
     }
 }

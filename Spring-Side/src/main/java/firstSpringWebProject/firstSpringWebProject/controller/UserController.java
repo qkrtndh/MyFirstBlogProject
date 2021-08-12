@@ -20,6 +20,7 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/user")
     private ResponseEntity<?> join(@RequestBody User user){
+        System.out.println("!!!!");
        return new ResponseEntity<>(userService.join(user), HttpStatus.CREATED);
     }
 }
