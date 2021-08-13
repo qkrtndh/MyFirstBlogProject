@@ -25,13 +25,14 @@ const Header = () => {
 
       <Nav activeKey="/home" className="justify-content-between">
         <Nav className="me-auto">
-          <Link to="/LoginForm" className="nav-link">
-            회원관리(임시 로그인)
+          <Link to="/" className="nav-link">
+            회원관리
           </Link>
-          <Link to="/logout" className="nav-link">
-            카테고리 수정(임시 로그아웃)
+          <Link to="/" className="nav-link">
+            카테고리 수정
           </Link>
         </Nav>
+
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-info">Search</Button>

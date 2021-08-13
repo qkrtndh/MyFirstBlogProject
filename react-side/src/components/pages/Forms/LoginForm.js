@@ -14,6 +14,7 @@ const LoginForm = (props) => {
   };
   const loginproc = (e) => {
     e.preventDefault();
+
     fetch('http://localhost:8080/login', {
       method: 'POST',
       headers: {
@@ -22,19 +23,19 @@ const LoginForm = (props) => {
       body: JSON.stringify(user),
     })
       .then((res) => {
-        console.log(1, res);
         if (res.status === 201 || res.status === 200) {
-          console.log(res.status, res.json);
           return res.json();
         }
         return null;
       })
       .then((res) => {
         if (res !== null) {
-          alert('가입되었습니다!');
+          alert('로그인성공!');
+          console.log(res.Authorization);
+          localStorage.setItem('ACCESS_TOKEN', res.Authorization);
           props.history.push('/');
         } else {
-          alert('등록실패');
+          alert('로그인실패');
         }
       });
   };

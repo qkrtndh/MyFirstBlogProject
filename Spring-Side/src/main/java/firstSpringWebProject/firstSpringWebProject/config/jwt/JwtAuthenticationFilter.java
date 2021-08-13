@@ -10,6 +10,7 @@ import firstSpringWebProject.firstSpringWebProject.domain.User;
 
 import lombok.RequiredArgsConstructor;
 
+import org.json.simple.JSONObject;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
@@ -22,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -54,5 +56,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withClaim("username", principalDetails.getUser().getUsername())
                 .sign(Algorithm.HMAC512(JwtProperties.SECRET));
         response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + jwtToken);
+        JSONObject json = new JSONObject();
+        PrintWriter out = response.getWriter();
+        json.put(JwtProperties.HEADER_STRING,JwtProperties.TOKEN_PREFIX + jwtToken);
+        out.print(json);
+        out.flush();
     }
 }

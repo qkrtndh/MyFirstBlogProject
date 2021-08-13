@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -20,7 +22,7 @@ public class UserController {
     @CrossOrigin
     @PostMapping("/user")
     private ResponseEntity<?> join(@RequestBody User user){
-        System.out.println("!!!!");
+
        return new ResponseEntity<>(userService.join(user), HttpStatus.CREATED);
     }
 }
