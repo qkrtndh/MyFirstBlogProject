@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav } from 'react-bootstrap';
+import { Button, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Home = (props) => {
@@ -12,9 +12,9 @@ const Home = (props) => {
       <h1>메인페이지</h1>
       {localStorage.getItem('ACCESS_TOKEN') ? (
         <Nav className="me-auto">
-          <Link onClick={logout} className="nav-link">
+          <Button variant="dark" onClick={logout}>
             임시 로그아웃
-          </Link>
+          </Button>
         </Nav>
       ) : (
         <Nav className="me-auto">

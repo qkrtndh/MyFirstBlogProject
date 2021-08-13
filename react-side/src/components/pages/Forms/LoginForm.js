@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import Axios from 'axios';
 
 const LoginForm = (props) => {
   const [user, setUser] = useState({
@@ -12,32 +13,28 @@ const LoginForm = (props) => {
       [e.target.name]: e.target.value,
     });
   };
+  const config = {
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+  };
   const loginproc = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      }, //전송할 데이터를 json으로 변경하여 던짐
-      body: JSON.stringify(user),
-    })
-      .then((res) => {
-        if (res.status === 201 || res.status === 200) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((res) => {
-        if (res !== null) {
-          alert('로그인성공!');
-          console.log(res.Authorization);
-          localStorage.setItem('ACCESS_TOKEN', res.Authorization);
-          props.history.push('/');
-        } else {
-          alert('로그인실패');
-        }
-      });
+    Axios.post(
+      'http://localhost:8080/login',
+      JSON.stringify(user),
+      config,
+    ).then((res) => {
+      if (res.status === 200) {
+        alert('로그인성공!');
+        console.log(res.data.Authorization);
+        localStorage.setItem('ACCESS_TOKEN', res.data.Authorization);
+        props.history.push('/');
+      } else {
+        alert('로그인실패!');
+      }
+    });
   };
   return (
     <Form onSubmit={loginproc}>
