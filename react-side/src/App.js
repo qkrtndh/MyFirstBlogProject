@@ -5,6 +5,7 @@ import Header from './components/Header';
 import JoinForm from './components/pages/Forms/JoinForm';
 import LoginForm from './components/pages/Forms/LoginForm';
 import Home from './components/pages/Home';
+import test from './components/pages/test';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Header />
       <Container>
         <Route path="/" exact={true} component={Home}></Route>
-        <Route path="/boardList" exact={true} component={''}></Route>
+        <Route path="/boardList" exact={true} component={test}></Route>
         <Route path="/LoginForm" exact={true} component={LoginForm}></Route>
         <Route path="/JoinForm" exact={true} component={JoinForm}></Route>
       </Container>

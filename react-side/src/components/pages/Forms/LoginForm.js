@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Axios from 'axios';
+import axios from 'axios';
 
 const LoginForm = (props) => {
   const [user, setUser] = useState({
@@ -29,7 +30,8 @@ const LoginForm = (props) => {
       if (res.status === 200) {
         alert('로그인성공!');
         console.log(res.data.Authorization);
-        localStorage.setItem('ACCESS_TOKEN', res.data.Authorization);
+        localStorage.setItem('Authorization', res.data.Authorization);
+        axios.defaults.headers.common['Authorization'] = res.data.Authorization;
         props.history.push('/');
       } else {
         alert('로그인실패!');

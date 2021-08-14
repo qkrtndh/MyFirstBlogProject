@@ -25,7 +25,7 @@ const Header = () => {
 
       <Nav activeKey="/home" className="justify-content-between">
         <Nav className="me-auto">
-          <Link to="/" className="nav-link">
+          <Link to="/boardList" className="nav-link">
             회원관리
           </Link>
           <Link to="/" className="nav-link">

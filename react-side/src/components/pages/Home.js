@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 const Home = (props) => {
   const logout = () => {
-    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('Authorization');
     props.history.push('/');
   };
   return (
     <div>
       <h1>메인페이지</h1>
-      {localStorage.getItem('ACCESS_TOKEN') ? (
+      {localStorage.getItem('Authorization') ? (
         <Nav className="me-auto">
           <Button variant="dark" onClick={logout}>
             임시 로그아웃

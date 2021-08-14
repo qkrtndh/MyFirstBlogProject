@@ -22,7 +22,7 @@ public class User {
 
     @Column(nullable = false,length = 100)//hash 암호화시를 위해 넉넉하게 설정
     private String password;
-    @Column(nullable = false,length = 50)
+    @Column(nullable = false,length = 50,unique = true)//로그인용 이메일
     private String username;
 
     //private String oauth;//kakao,google
