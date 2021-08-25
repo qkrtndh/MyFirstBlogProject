@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Form, FormControl, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -30,6 +30,9 @@ const Header = () => {
           </Link>
           <Link to="/" className="nav-link">
             카테고리 수정
+          </Link>
+          <Link to="/JoinForm" className="nav-link">
+            회원가입
           </Link>
         </Nav>
 

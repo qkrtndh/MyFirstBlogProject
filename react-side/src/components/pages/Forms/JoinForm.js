@@ -12,6 +12,13 @@ const JoinForm = (props) => {
       'Content-Type': 'application/json; charset=utf-8',
     },
   };
+
+  const [duple1, setDuple1] = useState('');
+  const [duple2, setDuple2] = useState('');
+  const [duple, setDuple] = useState({
+    username: '',
+    nickname: '',
+  });
   const joinprocess = (e) => {
     e.preventDefault();
 
@@ -35,17 +42,46 @@ const JoinForm = (props) => {
       ...user,
       [e.target.name]: e.target.value,
     });
+    /*setDuple({ [e.target.name]: e.target.value });
+    if (e.target.name === 'username') {
+      if (e.target.value.length === 0) {
+        setDuple1('');
+      } else {
+        Axios.get(
+          'http://localhost:8080/user/username/reduplication',
+          JSON.stringify(duple),
+          config,
+        ).then((res) => {
+          setDuple1(res);
+        });
+      }
+    } else if (e.target.name === 'nickname') {
+      if (e.target.value.length === 0) {
+        setDuple2('');
+      } else {
+        Axios.get(
+          'http://localhost:8080/user/nickname/reduplication',
+          JSON.stringify(duple),
+          config,
+        ).then((res) => {
+          setDuple2(res);
+        });
+      }
+    }*/
   };
+
   return (
     <Form onSubmit={joinprocess}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
+
         <Form.Control
           type="email"
           placeholder="Enter email"
           onChange={changeValue}
           name="username"
         />
+        <Form.Text className="text-muted">{duple1}</Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -67,7 +103,7 @@ const JoinForm = (props) => {
           name="nickname"
         />
       </Form.Group>
-
+      <Form.Text className="text-muted">{duple2}</Form.Text>
       <Button variant="primary" type="submit">
         Submit
       </Button>
