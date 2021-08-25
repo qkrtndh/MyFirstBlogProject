@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Header />
-      <Container>
+      <Container className="ml-1">
         <Route path="/" exact={true} component={Home}></Route>
         <Route path="/boardList" exact={true} component={test}></Route>
         <Route path="/LoginForm" exact={true} component={LoginForm}></Route>

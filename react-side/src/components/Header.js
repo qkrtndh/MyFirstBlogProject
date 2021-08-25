@@ -31,9 +31,6 @@ const Header = () => {
           <Link to="/" className="nav-link">
             카테고리 수정
           </Link>
-          <Link to="/JoinForm" className="nav-link">
-            회원가입
-          </Link>
         </Nav>
 
         <Form inline>

@@ -1,5 +1,13 @@
 import React, { useEffect } from 'react';
-import { Button, Nav } from 'react-bootstrap';
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Nav,
+  Pagination,
+  Row,
+} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Home = (props) => {
@@ -8,34 +16,95 @@ const Home = (props) => {
     localStorage.removeItem('exp');
     props.history.push('/');
   };
-  const checkexp = () => {
-    if (localStorage.getItem('exp') < Date.now()) {
-      alert('토큰 만료');
-      localStorage.removeItem('Authorization');
-      localStorage.removeItem('exp');
+
+  useEffect(() => {
+    if (
+      localStorage.getItem('exp') != null &&
+      localStorage.getItem('exp') < Date.now()
+    ) {
+      alert('로그인 시간이 만료되어 로그아웃 되었습니다.');
+      localStorage.clear();
       props.history.push('/');
     }
-  };
+  }, [props]);
   return (
-    <div>
-      <h1>메인페이지</h1>
-      {localStorage.getItem('Authorization') ? (
-        <Nav className="me-auto">
-          <Button variant="dark" onClick={logout}>
-            임시 로그아웃
-          </Button>
-          <Button variant="white" onClick={checkexp}>
-            만료체크
-          </Button>
-        </Nav>
-      ) : (
-        <Nav className="me-auto">
-          <Link to="/LoginForm" className="nav-link">
-            임시 로그인
-          </Link>
-        </Nav>
-      )}
-    </div>
+    <Container>
+      <Row>
+        <Col sm={3}>
+          <div>
+            <h1>메인페이지</h1>
+            {localStorage.getItem('Authorization') ? (
+              <Nav className="me-auto">
+                <Button variant="dark" onClick={logout}>
+                  임시 로그아웃
+                </Button>
+              </Nav>
+            ) : (
+              <Nav className="me-auto">
+                <Link to="/LoginForm" className="nav-link">
+                  임시 로그인
+                </Link>
+                <Link to="/JoinForm" className="nav-link">
+                  회원가입
+                </Link>
+              </Nav>
+            )}
+          </div>
+        </Col>
+        <Col sm={9}>
+          <Card>
+            <Card.Header as="h5">Featured</Card.Header>
+            <Card.Body>
+              <Card.Title>Special title treatment</Card.Title>
+              <Card.Text>
+                With supporting text below as a natural lead-in to additional
+                content.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Header as="h5">Featured</Card.Header>
+            <Card.Body>
+              <Card.Title>Special title treatment</Card.Title>
+              <Card.Text>
+                With supporting text below as a natural lead-in to additional
+                content.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+          <Card>
+            <Card.Header as="h5">Featured</Card.Header>
+            <Card.Body>
+              <Card.Title>Special title treatment</Card.Title>
+              <Card.Text>
+                With supporting text below as a natural lead-in to additional
+                content.
+              </Card.Text>
+              <Button variant="primary">Go somewhere</Button>
+            </Card.Body>
+          </Card>
+          <Pagination className="justify-content-center">
+            <Pagination.First />
+            <Pagination.Prev />
+            <Pagination.Item>{1}</Pagination.Item>
+            <Pagination.Ellipsis />
+
+            <Pagination.Item>{10}</Pagination.Item>
+            <Pagination.Item>{11}</Pagination.Item>
+            <Pagination.Item active>{12}</Pagination.Item>
+            <Pagination.Item>{13}</Pagination.Item>
+            <Pagination.Item disabled>{14}</Pagination.Item>
+
+            <Pagination.Ellipsis />
+            <Pagination.Item>{20}</Pagination.Item>
+            <Pagination.Next />
+            <Pagination.Last />
+          </Pagination>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
