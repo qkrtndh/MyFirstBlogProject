@@ -39,7 +39,7 @@ const LoginForm = (props) => {
         );
 
         localStorage.setItem('exp', decodedToken.payload.exp * 1000);
-
+        localStorage.setItem('nickname', decodedToken.payload.nickname);
         axios.defaults.headers.common['Authorization'] = res.data.Authorization;
         props.history.push('/');
       } else {

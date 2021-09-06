@@ -12,8 +12,7 @@ import { Link } from 'react-router-dom';
 
 const Home = (props) => {
   const logout = () => {
-    localStorage.removeItem('Authorization');
-    localStorage.removeItem('exp');
+    localStorage.clear();
     props.history.push('/');
   };
 
@@ -28,13 +27,14 @@ const Home = (props) => {
     }
   }, [props]);
   return (
-    <Container>
+    <Container className="col-md-12 col-md-offset-3">
       <Row>
         <Col sm={3}>
           <div>
             <h1>메인페이지</h1>
             {localStorage.getItem('Authorization') ? (
               <Nav className="me-auto">
+                <h3>어서오세요 {localStorage.getItem('nickname')}님</h3>
                 <Button variant="dark" onClick={logout}>
                   임시 로그아웃
                 </Button>
@@ -51,57 +51,66 @@ const Home = (props) => {
             )}
           </div>
         </Col>
-        <Col sm={9}>
-          <Card>
-            <Card.Header as="h5">Featured</Card.Header>
-            <Card.Body>
-              <Card.Title>Special title treatment</Card.Title>
-              <Card.Text>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Header as="h5">Featured</Card.Header>
-            <Card.Body>
-              <Card.Title>Special title treatment</Card.Title>
-              <Card.Text>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Header as="h5">Featured</Card.Header>
-            <Card.Body>
-              <Card.Title>Special title treatment</Card.Title>
-              <Card.Text>
-                With supporting text below as a natural lead-in to additional
-                content.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-          <Pagination className="justify-content-center">
-            <Pagination.First />
-            <Pagination.Prev />
-            <Pagination.Item>{1}</Pagination.Item>
-            <Pagination.Ellipsis />
+        <Col sm={8}>
+          <div class="col-12 border-left">
+            <Card>
+              <Card.Header as="h5">Featured</Card.Header>
+              <Card.Body>
+                <Card.Title>Special title treatment</Card.Title>
+                <Card.Text>
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Header as="h5">Featured</Card.Header>
+              <Card.Body>
+                <Card.Title>Special title treatment</Card.Title>
+                <Card.Text>
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+            <Card>
+              <Card.Header as="h5">Featured</Card.Header>
+              <Card.Body>
+                <Card.Title>Special title treatment</Card.Title>
+                <Card.Text>
+                  With supporting text below as a natural lead-in to additional
+                  content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+            <Pagination className="justify-content-center">
+              <Pagination.First />
+              <Pagination.Prev />
+              <Pagination.Item>{1}</Pagination.Item>
+              <Pagination.Ellipsis />
 
-            <Pagination.Item>{10}</Pagination.Item>
-            <Pagination.Item>{11}</Pagination.Item>
-            <Pagination.Item active>{12}</Pagination.Item>
-            <Pagination.Item>{13}</Pagination.Item>
-            <Pagination.Item disabled>{14}</Pagination.Item>
+              <Pagination.Item>{10}</Pagination.Item>
+              <Pagination.Item>{11}</Pagination.Item>
+              <Pagination.Item active>{12}</Pagination.Item>
+              <Pagination.Item>{13}</Pagination.Item>
+              <Pagination.Item disabled>{14}</Pagination.Item>
 
-            <Pagination.Ellipsis />
-            <Pagination.Item>{20}</Pagination.Item>
-            <Pagination.Next />
-            <Pagination.Last />
-          </Pagination>
+              <Pagination.Ellipsis />
+              <Pagination.Item>{20}</Pagination.Item>
+              <Pagination.Next />
+              <Pagination.Last />
+            </Pagination>
+            {localStorage.getItem('Authorization') ? (
+              <Link to="/BoardForm" className="nav-link">
+                글쓰기
+              </Link>
+            ) : (
+              <p></p>
+            )}
+          </div>
         </Col>
       </Row>
     </Container>
